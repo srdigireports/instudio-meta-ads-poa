@@ -1,0 +1,1663 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>InStudio — Meta Ads Plan of Action | Shamsher</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,400;1,600&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy:      #090D1B;
+    --navy-mid:  #111626;
+    --navy-card: #161D30;
+    --navy-border:#1F2840;
+    --gold:      #C8A97C;
+    --gold-light:#E2C99A;
+    --blush:     #E0B8A8;
+    --slate:     #7A8BAA;
+    --fog:       #A9B6CC;
+    --white:     #F4F0EC;
+    --dim:       #6E7E96;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--navy);
+    color: var(--white);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px;
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ── UTILITIES ─────────────────────────────────── */
+  .gold { color: var(--gold); }
+  .blush { color: var(--blush); }
+  .slate { color: var(--slate); }
+  .dim { color: var(--dim); }
+  .mono { font-family: 'DM Mono', monospace; }
+  .serif { font-family: 'Cormorant Garamond', serif; }
+  .italic { font-style: italic; }
+
+  /* ── COVER ──────────────────────────────────────── */
+  .cover {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 48px 64px;
+    position: relative;
+    overflow: hidden;
+  }
+  .cover::before {
+    content: '';
+    position: absolute;
+    top: -120px; right: -80px;
+    width: 600px; height: 600px;
+    border-radius: 50%;
+    background: radial-gradient(circle at center, rgba(200,169,124,0.07) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .cover::after {
+    content: '';
+    position: absolute;
+    bottom: 60px; left: -100px;
+    width: 400px; height: 400px;
+    border-radius: 50%;
+    background: radial-gradient(circle at center, rgba(224,184,168,0.05) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .cover-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+  }
+  .sr-logo {
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 600;
+    font-size: 13px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--gold);
+  }
+  .sr-logo span { color: var(--dim); font-weight: 300; }
+  .doc-tag {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    color: var(--dim);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    border: 1px solid var(--navy-border);
+    padding: 5px 12px;
+    border-radius: 3px;
+  }
+
+  .cover-body {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 80px 0 40px;
+  }
+  .cover-eyebrow {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    color: var(--gold);
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    margin-bottom: 24px;
+  }
+  .cover-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 76px;
+    font-weight: 300;
+    line-height: 1.05;
+    letter-spacing: -0.01em;
+    color: var(--white);
+    max-width: 680px;
+    margin-bottom: 32px;
+  }
+  .cover-title em {
+    font-style: italic;
+    color: var(--gold-light);
+  }
+  .cover-subtitle {
+    font-size: 15px;
+    color: var(--fog);
+    font-weight: 300;
+    max-width: 420px;
+    line-height: 1.6;
+  }
+
+  /* The "arch" divider — signature element throughout */
+  .arch-divider {
+    width: 100%;
+    height: 1px;
+    position: relative;
+    margin: 40px 0;
+  }
+  .arch-divider::before {
+    content: '';
+    position: absolute;
+    left: 0; right: 0; top: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--gold) 30%, var(--gold-light) 50%, var(--gold) 70%, transparent);
+    opacity: 0.35;
+  }
+
+  .cover-footer {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 32px;
+    padding-top: 40px;
+    border-top: 1px solid var(--navy-border);
+  }
+  .cover-meta-item { }
+  .cover-meta-label {
+    font-size: 10px;
+    font-family: 'DM Mono', monospace;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--dim);
+    margin-bottom: 6px;
+  }
+  .cover-meta-value {
+    font-size: 13px;
+    color: var(--fog);
+    font-weight: 400;
+  }
+
+  /* ── PAGE SECTIONS ──────────────────────────────── */
+  .section {
+    padding: 72px 64px;
+    border-bottom: 1px solid var(--navy-border);
+  }
+  .section:last-child { border-bottom: none; }
+
+  .section-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 12px;
+  }
+  .section-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 42px;
+    font-weight: 300;
+    line-height: 1.15;
+    color: var(--white);
+    margin-bottom: 32px;
+  }
+  .section-title em {
+    font-style: italic;
+    color: var(--gold-light);
+  }
+
+  .body-copy {
+    font-size: 14px;
+    color: var(--fog);
+    font-weight: 300;
+    line-height: 1.75;
+    max-width: 700px;
+  }
+
+  /* ── CARDS ──────────────────────────────────────── */
+  .card {
+    background: var(--navy-card);
+    border: 1px solid var(--navy-border);
+    border-radius: 8px;
+    padding: 28px 32px;
+  }
+  .card-title {
+    font-size: 11px;
+    font-family: 'DM Mono', monospace;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 16px;
+  }
+
+  /* ── 2-COL GRID ──────────────────────────────────── */
+  .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+  .grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 20px; }
+  .grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+
+  /* ── OPPORTUNITY SECTION ─────────────────────────── */
+  .insight-list { list-style: none; }
+  .insight-list li {
+    display: flex;
+    gap: 16px;
+    padding: 18px 0;
+    border-bottom: 1px solid var(--navy-border);
+    align-items: flex-start;
+  }
+  .insight-list li:last-child { border-bottom: none; }
+  .insight-num {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    color: var(--gold);
+    min-width: 28px;
+    margin-top: 2px;
+  }
+  .insight-text {
+    font-size: 14px;
+    color: var(--fog);
+    font-weight: 300;
+    line-height: 1.65;
+  }
+  .insight-text strong {
+    color: var(--white);
+    font-weight: 500;
+  }
+
+  /* ── AUDIENCE SECTION ─────────────────────────────── */
+  .audience-card {
+    background: var(--navy-card);
+    border: 1px solid var(--navy-border);
+    border-radius: 8px;
+    padding: 32px;
+    position: relative;
+    overflow: hidden;
+  }
+  .audience-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+  }
+  .audience-card.primary::before { background: linear-gradient(90deg, var(--gold), var(--gold-light)); }
+  .audience-card.secondary::before { background: linear-gradient(90deg, var(--blush), #C9A0A0); }
+  .audience-card.tertiary::before { background: linear-gradient(90deg, var(--slate), var(--fog)); }
+
+  .audience-tag {
+    display: inline-block;
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    padding: 4px 10px;
+    border-radius: 3px;
+    margin-bottom: 16px;
+  }
+  .tag-gold { background: rgba(200,169,124,0.12); color: var(--gold); }
+  .tag-blush { background: rgba(224,184,168,0.12); color: var(--blush); }
+  .tag-slate { background: rgba(122,139,170,0.12); color: var(--slate); }
+  .tag-green { background: rgba(100,180,130,0.12); color: #8BC4A8; }
+
+  .audience-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 24px;
+    font-weight: 400;
+    color: var(--white);
+    margin-bottom: 8px;
+  }
+  .audience-desc {
+    font-size: 13px;
+    color: var(--fog);
+    font-weight: 300;
+    line-height: 1.65;
+    margin-bottom: 20px;
+  }
+  .attr-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+  }
+  .attr-item {
+    background: rgba(255,255,255,0.03);
+    border-radius: 5px;
+    padding: 10px 14px;
+  }
+  .attr-label {
+    font-size: 10px;
+    font-family: 'DM Mono', monospace;
+    color: var(--dim);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 4px;
+  }
+  .attr-value {
+    font-size: 12px;
+    color: var(--white);
+    font-weight: 400;
+  }
+
+  /* ── PHASE ARCHITECTURE ────────────────────────── */
+  .phase-block {
+    background: var(--navy-card);
+    border: 1px solid var(--navy-border);
+    border-radius: 8px;
+    padding: 36px;
+    position: relative;
+  }
+  .phase-block::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; bottom: 0;
+    width: 3px;
+    border-radius: 8px 0 0 8px;
+  }
+  .phase-block.p1::before { background: var(--slate); }
+  .phase-block.p2::before { background: var(--gold); }
+  .phase-block.p3::before { background: var(--blush); }
+
+  .phase-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 24px;
+  }
+  .phase-number {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    color: var(--dim);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin-bottom: 6px;
+  }
+  .phase-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 28px;
+    font-weight: 400;
+    color: var(--white);
+  }
+  .phase-timing {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    color: var(--dim);
+    border: 1px solid var(--navy-border);
+    padding: 5px 12px;
+    border-radius: 3px;
+    white-space: nowrap;
+  }
+  .phase-objective {
+    font-size: 13px;
+    color: var(--fog);
+    font-weight: 300;
+    line-height: 1.65;
+    margin-bottom: 24px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid var(--navy-border);
+  }
+
+  .phase-tasks {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin-bottom: 24px;
+  }
+  .phase-task {
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+    font-size: 13px;
+    color: var(--fog);
+    font-weight: 300;
+  }
+  .task-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    margin-top: 6px;
+    flex-shrink: 0;
+  }
+  .p1 .task-dot { background: var(--slate); }
+  .p2 .task-dot { background: var(--gold); }
+  .p3 .task-dot { background: var(--blush); }
+
+  .phase-budget-bar {
+    background: rgba(255,255,255,0.04);
+    border-radius: 5px;
+    padding: 14px 18px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 12px;
+  }
+  .phase-budget-label {
+    font-size: 11px;
+    font-family: 'DM Mono', monospace;
+    color: var(--dim);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+  .phase-budget-value {
+    font-family: 'DM Mono', monospace;
+    font-size: 15px;
+    font-weight: 500;
+    color: var(--gold);
+  }
+
+  /* ── CAMPAIGN STRUCTURE TABLE ──────────────────── */
+  .camp-table { width: 100%; border-collapse: collapse; }
+  .camp-table th {
+    text-align: left;
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--dim);
+    padding: 10px 16px;
+    border-bottom: 1px solid var(--navy-border);
+  }
+  .camp-table td {
+    padding: 14px 16px;
+    font-size: 13px;
+    color: var(--fog);
+    border-bottom: 1px solid rgba(31,40,64,0.5);
+    vertical-align: top;
+  }
+  .camp-table tr:last-child td { border-bottom: none; }
+  .camp-table td:first-child { color: var(--white); font-weight: 500; }
+  .camp-pill {
+    display: inline-block;
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    padding: 2px 8px;
+    border-radius: 3px;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+
+  /* ── CREATIVE SECTION ─────────────────────────── */
+  .creative-card {
+    background: var(--navy-card);
+    border: 1px solid var(--navy-border);
+    border-radius: 8px;
+    padding: 28px 32px;
+  }
+  .creative-type {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 10px;
+  }
+  .creative-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 22px;
+    font-weight: 400;
+    color: var(--white);
+    margin-bottom: 10px;
+  }
+  .creative-desc {
+    font-size: 13px;
+    color: var(--fog);
+    font-weight: 300;
+    line-height: 1.65;
+    margin-bottom: 14px;
+  }
+  .creative-hook {
+    background: rgba(200,169,124,0.07);
+    border-left: 2px solid var(--gold);
+    padding: 10px 14px;
+    border-radius: 0 4px 4px 0;
+    font-size: 12px;
+    color: var(--gold-light);
+    font-style: italic;
+    margin-bottom: 10px;
+  }
+  .hook-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--dim);
+    margin-bottom: 4px;
+    font-style: normal;
+  }
+
+  /* ── PROJECTIONS TABLE ───────────────────────── */
+  .proj-section { overflow-x: auto; }
+  .proj-table { width: 100%; border-collapse: collapse; min-width: 720px; }
+  .proj-table thead tr {
+    border-bottom: 1px solid var(--navy-border);
+  }
+  .proj-table th {
+    text-align: left;
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--dim);
+    padding: 12px 16px;
+  }
+  .proj-table th:not(:first-child) { text-align: center; }
+  .proj-table td {
+    padding: 14px 16px;
+    font-size: 13px;
+    color: var(--fog);
+    border-bottom: 1px solid rgba(31,40,64,0.5);
+  }
+  .proj-table td:not(:first-child) {
+    text-align: center;
+    font-family: 'DM Mono', monospace;
+    font-size: 12px;
+  }
+  .proj-table tr:last-child td { border-bottom: none; }
+  .proj-table .metric-label { color: var(--white); font-weight: 500; font-size: 13px; }
+  .proj-table .highlight {
+    color: var(--gold);
+    font-weight: 600;
+  }
+  .proj-table .good { color: #8BC4A8; }
+  .proj-table .strong { color: var(--blush); }
+  .proj-table .subrow td { font-size: 12px; color: var(--dim); }
+  .proj-table .subrow td:first-child { padding-left: 28px; }
+
+  /* Phase column headers */
+  .proj-table .col-ph1 { color: var(--slate); }
+  .proj-table .col-ph2 { color: var(--gold); }
+  .proj-table .col-ph3 { color: var(--blush); }
+
+  .divider-row td {
+    padding: 6px 16px !important;
+    background: rgba(255,255,255,0.015);
+    font-family: 'DM Mono', monospace;
+    font-size: 10px !important;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--dim) !important;
+    font-weight: 600 !important;
+  }
+
+  /* ── BENCHMARK ROW ─────────────────────────────── */
+  .bench-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+  .bench-card {
+    background: var(--navy-card);
+    border: 1px solid var(--navy-border);
+    border-radius: 8px;
+    padding: 22px 24px;
+    text-align: center;
+  }
+  .bench-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--dim);
+    margin-bottom: 10px;
+  }
+  .bench-value {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 36px;
+    font-weight: 300;
+    color: var(--white);
+    line-height: 1;
+    margin-bottom: 6px;
+  }
+  .bench-unit {
+    font-size: 12px;
+    color: var(--dim);
+    margin-top: 6px;
+  }
+  .bench-note {
+    font-size: 11px;
+    color: var(--gold);
+    margin-top: 8px;
+  }
+
+  /* ── TRACKING SECTION ─────────────────────────── */
+  .track-item {
+    display: grid;
+    grid-template-columns: 36px 1fr;
+    gap: 20px;
+    padding: 20px 0;
+    border-bottom: 1px solid var(--navy-border);
+    align-items: start;
+  }
+  .track-item:last-child { border-bottom: none; }
+  .track-num {
+    font-family: 'DM Mono', monospace;
+    font-size: 12px;
+    color: var(--gold);
+    margin-top: 2px;
+  }
+  .track-title {
+    font-size: 14px;
+    color: var(--white);
+    font-weight: 500;
+    margin-bottom: 4px;
+  }
+  .track-desc {
+    font-size: 13px;
+    color: var(--fog);
+    font-weight: 300;
+    line-height: 1.6;
+  }
+
+  /* ── NEXT STEPS ────────────────────────────────── */
+  .steps-list { list-style: none; }
+  .steps-list li {
+    display: flex;
+    gap: 20px;
+    padding: 20px 0;
+    border-bottom: 1px solid var(--navy-border);
+    align-items: flex-start;
+  }
+  .steps-list li:last-child { border-bottom: none; }
+  .step-icon {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    flex-shrink: 0;
+  }
+  .step-icon.gold-ic { background: rgba(200,169,124,0.1); color: var(--gold); border: 1px solid rgba(200,169,124,0.3); }
+  .step-icon.blush-ic { background: rgba(224,184,168,0.1); color: var(--blush); border: 1px solid rgba(224,184,168,0.3); }
+  .step-icon.slate-ic { background: rgba(122,139,170,0.1); color: var(--slate); border: 1px solid rgba(122,139,170,0.3); }
+  .step-body {}
+  .step-title { font-size: 14px; color: var(--white); font-weight: 500; margin-bottom: 4px; }
+  .step-desc { font-size: 13px; color: var(--fog); font-weight: 300; line-height: 1.6; }
+
+  /* ── FOOTER ─────────────────────────────────────── */
+  .doc-footer {
+    padding: 40px 64px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 1px solid var(--navy-border);
+  }
+  .footer-brand {
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 600;
+    font-size: 12px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--gold);
+  }
+  .footer-brand span { color: var(--dim); font-weight: 300; }
+  .footer-note {
+    font-size: 11px;
+    color: var(--dim);
+    font-family: 'DM Mono', monospace;
+  }
+
+  /* ── MISC ──────────────────────────────────────── */
+  .pill {
+    display: inline-block;
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 3px 9px;
+    border-radius: 3px;
+  }
+  .pill-gold { background: rgba(200,169,124,0.1); color: var(--gold); }
+  .pill-blush { background: rgba(224,184,168,0.1); color: var(--blush); }
+  .pill-slate { background: rgba(122,139,170,0.1); color: var(--slate); }
+  .pill-green { background: rgba(100,180,130,0.1); color: #8BC4A8; }
+
+  .mt-8  { margin-top: 8px; }
+  .mt-12 { margin-top: 12px; }
+  .mt-16 { margin-top: 16px; }
+  .mt-24 { margin-top: 24px; }
+  .mt-32 { margin-top: 32px; }
+  .mt-40 { margin-top: 40px; }
+  .mt-48 { margin-top: 48px; }
+  .mb-8  { margin-bottom: 8px; }
+  .mb-16 { margin-bottom: 16px; }
+  .mb-24 { margin-bottom: 24px; }
+  .mb-32 { margin-bottom: 32px; }
+
+  small { font-size: 11px; color: var(--dim); display: block; margin-top: 6px; line-height: 1.5; }
+
+  @media print {
+    body { background: #fff; color: #000; }
+    .cover { min-height: auto; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ═══════════════════════════ COVER ═══════════════════════════ -->
+<div class="cover">
+  <div class="cover-header">
+    <div class="sr-logo">Shamsher <span>/ digital growth</span></div>
+    <div class="doc-tag">Confidential — Meta Ads Strategy</div>
+  </div>
+
+  <div class="cover-body">
+    <div class="cover-eyebrow">Prepared for InStudio &nbsp;·&nbsp; Mosman, Sydney</div>
+    <h1 class="cover-title">Meta Ads<br><em>Plan of Action</em></h1>
+    <p class="cover-subtitle">A phased 90-day roadmap to drive bookings and training enrolments through paid social — grounded in 2026 Australian Meta Ads benchmarks.</p>
+  </div>
+
+  <div class="arch-divider"></div>
+
+  <div class="cover-footer">
+    <div class="cover-meta-item">
+      <div class="cover-meta-label">Client</div>
+      <div class="cover-meta-value">In Studio — Ingrid Monroy</div>
+    </div>
+    <div class="cover-meta-item">
+      <div class="cover-meta-label">Location</div>
+      <div class="cover-meta-value">Mosman, NSW 2088</div>
+    </div>
+    <div class="cover-meta-item">
+      <div class="cover-meta-label">Prepared by</div>
+      <div class="cover-meta-value">Shamsher</div>
+    </div>
+    <div class="cover-meta-item">
+      <div class="cover-meta-label">Date</div>
+      <div class="cover-meta-value">July 2026</div>
+    </div>
+  </div>
+</div>
+
+
+<!-- ═══════════════════════════ 01 — BUSINESS OVERVIEW ══════════ -->
+<div class="section">
+  <div class="section-label">01 — Business Overview</div>
+  <h2 class="section-title">What We Know About<br><em>In Studio</em></h2>
+
+  <div class="grid-2">
+    <div>
+      <p class="body-copy">
+        In Studio is a boutique lash and brow studio founded by Ingrid Monroy in Mosman — one of Sydney's most affluent lower north shore suburbs. With 7+ years of experience and a background in Industrial Design, Ingrid brings a precision artist's eye to every treatment. The studio serves two distinct revenue lines: retail beauty services and professional training courses.
+      </p>
+      <p class="body-copy mt-16">
+        Bookings are handled via Gettimely. Training enquiries are taken through WhatsApp (+61 450 459 181). The brand has an active Instagram presence at <span class="gold">@in.studioaustralia</span> and no prior Meta Ads history — meaning this is a clean launch with zero wasted spend to inherit.
+      </p>
+    </div>
+
+    <div style="display:grid; gap:12px;">
+      <div class="card">
+        <div class="card-title">Revenue Lines</div>
+        <div style="display:grid; gap:8px;">
+          <div style="display:flex; justify-content:space-between; padding:10px 0; border-bottom:1px solid var(--navy-border);">
+            <span style="font-size:13px; color:var(--white);">Beauty Services</span>
+            <span class="pill pill-gold">Primary</span>
+          </div>
+          <div style="display:flex; justify-content:space-between; padding:10px 0; border-bottom:1px solid var(--navy-border);">
+            <span style="font-size:13px; color:var(--white);">Professional Training</span>
+            <span class="pill pill-blush">High-Value</span>
+          </div>
+          <div style="display:flex; justify-content:space-between; padding:10px 0;">
+            <span style="font-size:13px; color:var(--white);">Packages (Combo treatments)</span>
+            <span class="pill pill-green">Upsell</span>
+          </div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-title">Key Assumptions</div>
+        <ul class="insight-list" style="margin:0;">
+          <li style="padding:10px 0;">
+            <span class="insight-num">—</span>
+            <span class="insight-text"><strong>No prior Meta Ads account.</strong> Pixel, audiences, and creative testing all start from zero.</span>
+          </li>
+          <li style="padding:10px 0;">
+            <span class="insight-num">—</span>
+            <span class="insight-text"><strong>No access to current ad account or analytics</strong> provided at proposal stage.</span>
+          </li>
+          <li style="padding:10px 0; border-bottom:none;">
+            <span class="insight-num">—</span>
+            <span class="insight-text"><strong>All projections use 2026 Australian Meta Ads benchmarks</strong> for the beauty vertical, adjusted for local premium-suburb targeting.</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="mt-32">
+    <div class="card-title mb-16">Full Service & Training Menu</div>
+    <div class="grid-3">
+      <div class="card">
+        <div class="card-title">Eyebrow Services</div>
+        <ul style="list-style:none; display:grid; gap:8px;">
+          <li style="font-size:13px; color:var(--fog);">Brow Threading + Shaping</li>
+          <li style="font-size:13px; color:var(--fog);">Brow Wax + Shaping</li>
+          <li style="font-size:13px; color:var(--fog);">Brow Threading + Tint</li>
+          <li style="font-size:13px; color:var(--fog);">Brow Threading + Hybrid Tint</li>
+          <li style="font-size:13px; color:var(--fog);">Brow Lamination + Shaping</li>
+          <li style="font-size:13px; color:var(--fog);">Brow Tint</li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="card-title">Eyelash Services</div>
+        <ul style="list-style:none; display:grid; gap:8px;">
+          <li style="font-size:13px; color:var(--fog);">Lash Lift + Hydrating Treatment</li>
+          <li style="font-size:13px; color:var(--fog);">Lash Lift + Tint + Hydration</li>
+          <li style="font-size:13px; color:var(--fog);">Lash Tint</li>
+          <li style="font-size:13px; color:var(--fog);">Lash Extensions</li>
+          <li style="font-size:13px; color:var(--fog);">Facial Hair Removal (lip, chin, full face)</li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="card-title">Training Courses</div>
+        <ul style="list-style:none; display:grid; gap:8px;">
+          <li style="font-size:13px; color:var(--fog);">Lash Lifting Course <span class="pill pill-slate" style="margin-left:4px;">Online + F2F</span></li>
+          <li style="font-size:13px; color:var(--fog);">Eyebrow Design Course <span class="pill pill-slate" style="margin-left:4px;">Online + F2F</span></li>
+          <li style="font-size:13px; color:var(--fog);">Brow Lamination Course <span class="pill pill-slate" style="margin-left:4px;">Online + F2F</span></li>
+          <li style="font-size:13px; color:var(--fog);">Suitable for beginners + experienced techs</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="mt-16">
+      <div class="card">
+        <div class="card-title">Signature Packages (Highest AOV)</div>
+        <div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:16px;">
+          <div>
+            <div style="font-size:14px; color:var(--white); font-weight:500; margin-bottom:6px;">Lash + Brow Essential</div>
+            <div style="font-size:12px; color:var(--fog);">Lash Lift, Brow Threading/Wax + Hydration · 60 min</div>
+          </div>
+          <div>
+            <div style="font-size:14px; color:var(--white); font-weight:500; margin-bottom:6px;">Lash + Brow Deluxe</div>
+            <div style="font-size:12px; color:var(--fog);">+ Tint · 75 min — best lead offer for ads</div>
+          </div>
+          <div>
+            <div style="font-size:14px; color:var(--white); font-weight:500; margin-bottom:6px;">Ultimate Makeover</div>
+            <div style="font-size:12px; color:var(--fog);">Lamination + Lift + Tint + Hydration + Shaping · 75 min</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- ═══════════════════════════ 02 — THE OPPORTUNITY ════════════ -->
+<div class="section">
+  <div class="section-label">02 — The Opportunity</div>
+  <h2 class="section-title">Why Meta Ads<br><em>Make Sense Now</em></h2>
+
+  <ul class="insight-list">
+    <li>
+      <span class="insight-num">01</span>
+      <span class="insight-text"><strong>Mosman is a high-income, high-intent suburb.</strong> Median household income in the Mosman LGA is among Sydney's highest. Women aged 25–54 in this catchment spend significantly above the national average on personal care. A targeted Meta campaign puts In Studio directly in front of this audience where they already spend time — Instagram especially.</span>
+    </li>
+    <li>
+      <span class="insight-num">02</span>
+      <span class="insight-text"><strong>The beauty vertical converts well on Meta.</strong> Industry-wide, beauty brands achieve a CPA of approximately <strong class="gold">A$40–50</strong> for a new appointment booking at Australian CPM rates. For a studio with an average package value of A$90–130, that's a profitable first visit before accounting for any repeat bookings or lifetime value.</span>
+    </li>
+    <li>
+      <span class="insight-num">03</span>
+      <span class="insight-text"><strong>Training courses are a high-margin Meta opportunity.</strong> Course-level lead generation on Meta typically costs A$15–35 per enquiry in the beauty education niche. With a conversion rate of 15–20% from enquiry to enrolment and an estimated course value of A$400–700, the projected ROAS on training ads alone is 4x–6x.</span>
+    </li>
+    <li>
+      <span class="insight-num">04</span>
+      <span class="insight-text"><strong>Instagram Reels and Stories are purpose-built for this content.</strong> Before/after brow and lash transformations are among the most shared beauty content formats on Instagram. Since In Studio's services are cosmetic (not medical), there are <strong>no AHPRA advertising restrictions</strong> — meaning before/after creative, client results, and testimonials are all fully available for use in ads.</span>
+    </li>
+    <li>
+      <span class="insight-num">05</span>
+      <span class="insight-text"><strong>Ingrid's personal brand is a built-in creative asset.</strong> A founder-led studio with a Colombian heritage story, an artist's background, and a clear aesthetic sensibility is ideal for the kind of authentic, trust-building content that outperforms polished corporate creative on Meta.</span>
+    </li>
+  </ul>
+</div>
+
+
+<!-- ═══════════════════════════ 03 — TARGET AUDIENCES ══════════ -->
+<div class="section">
+  <div class="section-label">03 — Target Audiences</div>
+  <h2 class="section-title">Who We're<br><em>Advertising To</em></h2>
+
+  <div class="grid-3 mt-8">
+
+    <div class="audience-card primary">
+      <span class="audience-tag tag-gold">Segment A</span>
+      <div class="audience-name">The Local Client</div>
+      <p class="audience-desc">Women on Sydney's lower north shore actively interested in premium beauty treatments. This is the core bookings audience for services.</p>
+      <div class="attr-grid">
+        <div class="attr-item">
+          <div class="attr-label">Age</div>
+          <div class="attr-value">25 – 54</div>
+        </div>
+        <div class="attr-item">
+          <div class="attr-label">Gender</div>
+          <div class="attr-value">Female</div>
+        </div>
+        <div class="attr-item">
+          <div class="attr-label">Geo Radius</div>
+          <div class="attr-value">15km from Mosman</div>
+        </div>
+        <div class="attr-item">
+          <div class="attr-label">Includes</div>
+          <div class="attr-value">North Shore, CBD</div>
+        </div>
+        <div class="attr-item" style="grid-column:span 2;">
+          <div class="attr-label">Key Interests</div>
+          <div class="attr-value">Beauty, brow shaping, skincare, lash extensions, wellness, self-care, luxury services</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="audience-card secondary">
+      <span class="audience-tag tag-blush">Segment B</span>
+      <div class="audience-name">The Returning Client</div>
+      <p class="audience-desc">Website visitors and Instagram engagers who've shown interest but haven't booked. Retargeting converts warm audiences at significantly lower CPAs.</p>
+      <div class="attr-grid">
+        <div class="attr-item">
+          <div class="attr-label">Source</div>
+          <div class="attr-value">Pixel + IG engagers</div>
+        </div>
+        <div class="attr-item">
+          <div class="attr-label">Timing</div>
+          <div class="attr-value">Available from Week 4+</div>
+        </div>
+        <div class="attr-item">
+          <div class="attr-label">Expected CTR</div>
+          <div class="attr-value">2.5 – 3.5%</div>
+        </div>
+        <div class="attr-item">
+          <div class="attr-label">Expected CPA</div>
+          <div class="attr-value">30–40% lower</div>
+        </div>
+        <div class="attr-item" style="grid-column:span 2;">
+          <div class="attr-label">Ad Approach</div>
+          <div class="attr-value">Social proof, offer, limited availability messaging</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="audience-card tertiary">
+      <span class="audience-tag tag-slate">Segment C</span>
+      <div class="audience-name">The Aspiring Technician</div>
+      <p class="audience-desc">People looking to start or grow a career in beauty. Targets the training revenue line — broader geography including all of Sydney + online students.</p>
+      <div class="attr-grid">
+        <div class="attr-item">
+          <div class="attr-label">Age</div>
+          <div class="attr-value">18 – 42</div>
+        </div>
+        <div class="attr-item">
+          <div class="attr-label">Gender</div>
+          <div class="attr-value">Predominantly Female</div>
+        </div>
+        <div class="attr-item">
+          <div class="attr-label">Geo</div>
+          <div class="attr-value">Sydney + National (online)</div>
+        </div>
+        <div class="attr-item">
+          <div class="attr-label">Intent</div>
+          <div class="attr-value">Career change, side income</div>
+        </div>
+        <div class="attr-item" style="grid-column:span 2;">
+          <div class="attr-label">Key Interests</div>
+          <div class="attr-value">Beauty school, entrepreneur, side hustle, makeup artist, lash tech courses, small business</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="mt-24 card">
+    <div class="card-title">Lookalike Audiences — Build As You Go</div>
+    <div class="grid-3 mt-12">
+      <div>
+        <div style="font-size:12px; color:var(--gold); font-family:'DM Mono',monospace; text-transform:uppercase; letter-spacing:0.1em; margin-bottom:8px;">Phase 2 Ready</div>
+        <div style="font-size:13px; color:var(--fog);">1% LAL of Gettimely booking completions (once pixel has 50+ events)</div>
+      </div>
+      <div>
+        <div style="font-size:12px; color:var(--gold); font-family:'DM Mono',monospace; text-transform:uppercase; letter-spacing:0.1em; margin-bottom:8px;">Phase 2 Ready</div>
+        <div style="font-size:13px; color:var(--fog);">1% LAL of Instagram page engagers (top 30 days)</div>
+      </div>
+      <div>
+        <div style="font-size:12px; color:var(--gold); font-family:'DM Mono',monospace; text-transform:uppercase; letter-spacing:0.1em; margin-bottom:8px;">Phase 3 Ready</div>
+        <div style="font-size:13px; color:var(--fog);">1–3% LAL of Training enquiry leads for course scaling</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- ═══════════════════════════ 04 — CAMPAIGN ARCHITECTURE ══════ -->
+<div class="section">
+  <div class="section-label">04 — Campaign Architecture</div>
+  <h2 class="section-title">3-Phase Campaign<br><em>Structure</em></h2>
+
+  <div style="display:grid; gap:20px;">
+
+    <!-- PHASE 1 -->
+    <div class="phase-block p1">
+      <div class="phase-header">
+        <div>
+          <div class="phase-number">Phase 01</div>
+          <div class="phase-name">Foundation & Testing</div>
+        </div>
+        <div class="phase-timing">Weeks 1 – 4</div>
+      </div>
+      <p class="phase-objective">
+        Install the pixel, structure the account, launch 2–3 creative variants across two ad sets, and let Meta's algorithm gather learning data. This phase is intentionally conservative. The goal is clean data, not maximum bookings.
+      </p>
+      <div class="phase-tasks">
+        <div class="phase-task"><span class="task-dot"></span><span>Install Meta Pixel on instudiolash.com + Gettimely confirmation page</span></div>
+        <div class="phase-task"><span class="task-dot"></span><span>Set up Conversions API (CAPI) via Gettimely or server-side if available</span></div>
+        <div class="phase-task"><span class="task-dot"></span><span>Define custom conversion: "Book Now" click on Gettimely as a Purchase/Lead event</span></div>
+        <div class="phase-task"><span class="task-dot"></span><span>Launch Campaign 1 — Services (Traffic/Bookings objective)</span></div>
+        <div class="phase-task"><span class="task-dot"></span><span>Launch Campaign 2 — Training (Lead Gen objective, WhatsApp CTA)</span></div>
+        <div class="phase-task"><span class="task-dot"></span><span>Test 2 creative angles: Personal brand (Ingrid) vs. Result (before/after)</span></div>
+        <div class="phase-task"><span class="task-dot"></span><span>Use Advantage+ Audience targeting (let Meta optimise from day 1)</span></div>
+        <div class="phase-task"><span class="task-dot"></span><span>Weekly creative performance review — pause underperformers at 7 days</span></div>
+      </div>
+      <div class="phase-budget-bar">
+        <span class="phase-budget-label">Monthly Spend Target</span>
+        <span class="phase-budget-value">A$1,200 / month</span>
+      </div>
+    </div>
+
+    <!-- PHASE 2 -->
+    <div class="phase-block p2">
+      <div class="phase-header">
+        <div>
+          <div class="phase-number">Phase 02</div>
+          <div class="phase-name">Optimise & Retarget</div>
+        </div>
+        <div class="phase-timing">Weeks 5 – 8</div>
+      </div>
+      <p class="phase-objective">
+        By week 5 the pixel has 4+ weeks of data. Scale the winning creative from Phase 1, introduce a retargeting layer, and begin building Lookalike Audiences. Shift the Services campaign from Traffic to a Bookings/Conversions objective.
+      </p>
+      <div class="phase-tasks">
+        <div class="phase-task"><span class="task-dot"></span><span>Analyse Phase 1 CTR, CPC, and click-to-booking rate — identify top creative</span></div>
+        <div class="phase-task"><span class="task-dot"></span><span>Scale winning ad set budget +20–30%, pause losers</span></div>
+        <div class="phase-task"><span class="task-dot"></span><span>Launch retargeting campaign — website visitors + IG engagers (30 days)</span></div>
+        <div class="phase-task"><span class="task-dot"></span><span>Build 1% Lookalike off IG engagers (Services); 1% LAL of Training leads</span></div>
+        <div class="phase-task"><span class="task-dot"></span><span>Introduce Packages as a specific ad unit (Ultimate Makeover / Deluxe)</span></div>
+        <div class="phase-task"><span class="task-dot"></span><span>Switch Services campaign objective to Booking Conversions if pixel has 50+ events</span></div>
+        <div class="phase-task"><span class="task-dot"></span><span>Test Reels placement (expected 26% lower CPC vs. Feed)</span></div>
+        <div class="phase-task"><span class="task-dot"></span><span>Add seasonal hook if applicable (Spring/Summer lash prep, Mother's Day etc.)</span></div>
+      </div>
+      <div class="phase-budget-bar">
+        <span class="phase-budget-label">Monthly Spend Target</span>
+        <span class="phase-budget-value">A$1,500 / month</span>
+      </div>
+    </div>
+
+    <!-- PHASE 3 -->
+    <div class="phase-block p3">
+      <div class="phase-header">
+        <div>
+          <div class="phase-number">Phase 03</div>
+          <div class="phase-name">Scale & Diversify</div>
+        </div>
+        <div class="phase-timing">Weeks 9 – 12</div>
+      </div>
+      <p class="phase-objective">
+        With two months of conversion data, a tested creative library, and warm audiences in place, this phase scales the highest-ROAS campaigns and introduces a dedicated Training acquisition funnel with a lead magnet (e.g., a free guide PDF or intro Reel).
+      </p>
+      <div class="phase-tasks">
+        <div class="phase-task"><span class="task-dot"></span><span>Scale top-performing Services ad set by 20% weekly (never more than 25% at once)</span></div>
+        <div class="phase-task"><span class="task-dot"></span><span>Launch dedicated Training funnel: Awareness → Lead (WhatsApp/DM)</span></div>
+        <div class="phase-task"><span class="task-dot"></span><span>A/B test training lead magnet: "How to start a lash lifting business" guide</span></div>
+        <div class="phase-task"><span class="task-dot"></span><span>Deploy 2–3% Lookalike audiences (broader reach at competitive CPM)</span></div>
+        <div class="phase-task"><span class="task-dot"></span><span>Test Advantage+ Shopping Campaigns for package promotions (30–40% CPA reduction)</span></div>
+        <div class="phase-task"><span class="task-dot"></span><span>Build seasonal content calendar for Q4 (Christmas gift bookings, end-of-year events)</span></div>
+        <div class="phase-task"><span class="task-dot"></span><span>Produce monthly reporting dashboard (bookings attributed, cost per booking, ROAS)</span></div>
+        <div class="phase-task"><span class="task-dot"></span><span>Review budget ceiling — recommend increasing to A$2,500+/month if ROAS holds above 3x</span></div>
+      </div>
+      <div class="phase-budget-bar">
+        <span class="phase-budget-label">Monthly Spend Target</span>
+        <span class="phase-budget-value">A$2,000 / month</span>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Campaign Structure Table -->
+  <div class="mt-32">
+    <div class="card-title mb-16">Campaign Structure at a Glance</div>
+    <div style="overflow-x:auto;">
+      <table class="camp-table">
+        <thead>
+          <tr>
+            <th>Campaign</th>
+            <th>Objective</th>
+            <th>Audience</th>
+            <th>Placement</th>
+            <th>CTA</th>
+            <th>Live From</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Services — Cold</td>
+            <td><span class="camp-pill pill-gold">Traffic / Bookings</span></td>
+            <td>Women 25–54, 15km radius, beauty interests</td>
+            <td>Feed, Reels, Stories</td>
+            <td>Book Now</td>
+            <td>Week 1</td>
+          </tr>
+          <tr>
+            <td>Training — Cold</td>
+            <td><span class="camp-pill pill-slate">Lead Gen</span></td>
+            <td>Women 18–42, Sydney + national, beauty-biz interests</td>
+            <td>Feed, Reels</td>
+            <td>Ask via WhatsApp</td>
+            <td>Week 1</td>
+          </tr>
+          <tr>
+            <td>Services — Retarget</td>
+            <td><span class="camp-pill pill-blush">Conversions</span></td>
+            <td>Website visitors + IG engagers (30d)</td>
+            <td>Feed, Stories</td>
+            <td>Book Now</td>
+            <td>Week 5</td>
+          </tr>
+          <tr>
+            <td>Packages — Upsell</td>
+            <td><span class="camp-pill pill-gold">Conversions</span></td>
+            <td>1% LAL of bookers + IG engagers</td>
+            <td>Feed, Reels</td>
+            <td>View Packages</td>
+            <td>Week 6</td>
+          </tr>
+          <tr>
+            <td>Training — Warm</td>
+            <td><span class="camp-pill pill-slate">Lead Gen</span></td>
+            <td>1% LAL of training enquiry leads</td>
+            <td>Feed, Reels</td>
+            <td>Enrol Now / DM</td>
+            <td>Week 9</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+
+<!-- ═══════════════════════════ 05 — CREATIVE STRATEGY ════════════ -->
+<div class="section">
+  <div class="section-label">05 — Creative Strategy</div>
+  <h2 class="section-title">What We'll<br><em>Put In Front of Them</em></h2>
+
+  <p class="body-copy mb-32">
+    The winning creative formula for a boutique beauty studio on Meta is <strong style="color:var(--white);">authenticity + results + a clear reason to act now.</strong> No stock imagery, no corporate polish. Ingrid's personal story and her clients' transformations are the product. We recommend starting with 3 creative types and scaling what wins.
+  </p>
+
+  <div class="grid-3">
+    <div class="creative-card">
+      <div class="creative-type">Format 01 — Reels</div>
+      <div class="creative-name">The Transformation Reel</div>
+      <p class="creative-desc">A 15–30 second before/after Reel showing a brow threading or lash lift treatment in real time. Trending audio, natural lighting in studio. Most shareable format on Instagram.</p>
+      <div class="creative-hook">
+        <div class="hook-label">Sample Hook</div>
+        "5 years of bad eyebrows fixed in 30 minutes. 🤯 This is what Mosman women are waking up to."
+      </div>
+      <div style="display:flex; gap:8px; flex-wrap:wrap;">
+        <span class="pill pill-gold">Reels</span>
+        <span class="pill pill-slate">Stories</span>
+        <span class="pill pill-green">Services</span>
+      </div>
+    </div>
+
+    <div class="creative-card">
+      <div class="creative-type">Format 02 — Founder Story</div>
+      <div class="creative-name">Meet Ingrid</div>
+      <p class="creative-desc">A short talking-head video or carousel from Ingrid explaining her Colombian technique, her background in Industrial Design, and why she opened In Studio in Mosman. Builds trust and differentiation.</p>
+      <div class="creative-hook">
+        <div class="hook-label">Sample Hook</div>
+        "I was a designer before I was a brow artist. My clients say it shows — every appointment is shaped around your face, not a template."
+      </div>
+      <div style="display:flex; gap:8px; flex-wrap:wrap;">
+        <span class="pill pill-blush">Feed Video</span>
+        <span class="pill pill-green">Services</span>
+        <span class="pill pill-gold">Training</span>
+      </div>
+    </div>
+
+    <div class="creative-card">
+      <div class="creative-type">Format 03 — Carousel</div>
+      <div class="creative-name">Service Showcase</div>
+      <p class="creative-desc">4–6 slide carousel featuring individual services with clean photography, treatment name, and a short benefit. Packages card at the end with the "Book Now" CTA. Works well for Feed targeting.</p>
+      <div class="creative-hook">
+        <div class="hook-label">Sample Hook</div>
+        "Lash lift + brow lamination — one appointment, effortlessly polished for 6 weeks. Here's everything we do at In Studio, Mosman."
+      </div>
+      <div style="display:flex; gap:8px; flex-wrap:wrap;">
+        <span class="pill pill-slate">Carousel</span>
+        <span class="pill pill-green">Services</span>
+        <span class="pill pill-gold">Packages</span>
+      </div>
+    </div>
+
+    <div class="creative-card">
+      <div class="creative-type">Format 04 — Training Reel</div>
+      <div class="creative-name">Behind the Course</div>
+      <p class="creative-desc">Short Reel showing a real training session — students practising threading, Ingrid demonstrating technique, graduates with certificates. Speaks directly to the Segment C audience.</p>
+      <div class="creative-hook">
+        <div class="hook-label">Sample Hook</div>
+        "This is what A$0 to your first paying lash client looks like. I teach it in one day — online or in Mosman. 🎓"
+      </div>
+      <div style="display:flex; gap:8px; flex-wrap:wrap;">
+        <span class="pill pill-blush">Reels</span>
+        <span class="pill pill-slate">Training</span>
+      </div>
+    </div>
+
+    <div class="creative-card">
+      <div class="creative-type">Format 05 — Static / UGC</div>
+      <div class="creative-name">Client Result Grid</div>
+      <p class="creative-desc">Clean, square-format before/after single image or 2-panel static. Works as an easy A/B test against video. Cheapest to produce, useful for rapid iteration and retargeting.</p>
+      <div class="creative-hook">
+        <div class="hook-label">Sample Hook</div>
+        "Before: fine, sparse lashes. After: lifted, defined, and lasting 6–8 weeks. No extensions. No mascara. Just Ingrid. 📍Mosman."
+      </div>
+      <div style="display:flex; gap:8px; flex-wrap:wrap;">
+        <span class="pill pill-gold">Static</span>
+        <span class="pill pill-green">Retarget</span>
+        <span class="pill pill-slate">Stories</span>
+      </div>
+    </div>
+
+    <div class="creative-card">
+      <div class="creative-type">Format 06 — Seasonal Offer</div>
+      <div class="creative-name">Event-Based Push</div>
+      <p class="creative-desc">Time-limited creative tied to local events or occasions: school holiday prep, summer parties, Mother's Day, Christmas. Creates urgency without discounting. Run for 7–14 days.</p>
+      <div class="creative-hook">
+        <div class="hook-label">Sample Hook</div>
+        "Spring is here. Your brows should be too. Limited appointments in September — tap to book before we fill up. 🌿"
+      </div>
+      <div style="display:flex; gap:8px; flex-wrap:wrap;">
+        <span class="pill pill-blush">Reels</span>
+        <span class="pill pill-gold">Feed</span>
+        <span class="pill pill-green">Services</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="mt-24 card">
+    <div class="card-title">Creative Production Notes</div>
+    <div class="grid-2 mt-12">
+      <ul style="list-style:none; display:grid; gap:10px;">
+        <li style="font-size:13px; color:var(--fog);"><span class="gold">✓</span>&nbsp; Film vertically (9:16) for Reels and Stories from day one</li>
+        <li style="font-size:13px; color:var(--fog);"><span class="gold">✓</span>&nbsp; Captions/subtitles are essential — 85% of video viewed on mute</li>
+        <li style="font-size:13px; color:var(--fog);"><span class="gold">✓</span>&nbsp; No AHPRA restrictions apply — before/after and testimonials both usable</li>
+        <li style="font-size:13px; color:var(--fog);"><span class="gold">✓</span>&nbsp; Hook in first 2 seconds determines scroll-stop rate</li>
+      </ul>
+      <ul style="list-style:none; display:grid; gap:10px;">
+        <li style="font-size:13px; color:var(--fog);"><span style="color:var(--blush);">✗</span>&nbsp; Avoid stock photography — clients can tell immediately</li>
+        <li style="font-size:13px; color:var(--fog);"><span style="color:var(--blush);">✗</span>&nbsp; Don't over-produce — raw, natural content converts better in beauty</li>
+        <li style="font-size:13px; color:var(--fog);"><span style="color:var(--blush);">✗</span>&nbsp; Don't use music with licensing restrictions in Meta ads</li>
+        <li style="font-size:13px; color:var(--fog);"><span style="color:var(--blush);">✗</span>&nbsp; Avoid price-led CTAs early — build desire first, price is on the booking page</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+
+<!-- ═══════════════════════════ 06 — BENCHMARKS ═══════════════ -->
+<div class="section">
+  <div class="section-label">06 — Industry Benchmarks</div>
+  <h2 class="section-title">What the Market<br><em>Data Tells Us</em></h2>
+
+  <p class="body-copy mb-32">
+    Projections are grounded in 2026 Australian Meta Ads benchmarks (Rockingweb.com.au, Meta Business Insights, Get-Ryze.ai). Beauty-vertical data is blended with local premium-audience adjustments for Sydney's north shore geo targeting. All figures in AUD.
+  </p>
+
+  <div class="bench-grid">
+    <div class="bench-card">
+      <div class="bench-label">Avg CPM — AU Beauty</div>
+      <div class="bench-value" style="color:var(--gold);">A$18</div>
+      <div class="bench-unit">Cost per 1,000 impressions</div>
+      <div class="bench-note">Est. premium suburb premium: +15%</div>
+    </div>
+    <div class="bench-card">
+      <div class="bench-label">Avg CPC — AU Benchmark</div>
+      <div class="bench-value" style="color:var(--gold);">A$1.47</div>
+      <div class="bench-unit">All industries (2026)</div>
+      <div class="bench-note">Beauty lead gen: A$2.80–4.00</div>
+    </div>
+    <div class="bench-card">
+      <div class="bench-label">CTR — Beauty Visual</div>
+      <div class="bench-value" style="color:var(--blush);">2.0%</div>
+      <div class="bench-unit">Expected with strong creative</div>
+      <div class="bench-note">Reels avg 26% lower CPC vs Feed</div>
+    </div>
+    <div class="bench-card">
+      <div class="bench-label">CPA — Beauty Services</div>
+      <div class="bench-value" style="color:var(--blush);">A$40–50</div>
+      <div class="bench-unit">Per booking (cold audience)</div>
+      <div class="bench-note">Retargeting: A$20–30</div>
+    </div>
+  </div>
+
+  <div class="bench-grid mt-16">
+    <div class="bench-card">
+      <div class="bench-label">Booking CVR (cold)</div>
+      <div class="bench-value" style="color:var(--fog);">2.5%</div>
+      <div class="bench-unit">Ad click to Gettimely booking</div>
+      <div class="bench-note">Improves to 4%+ with retargeting</div>
+    </div>
+    <div class="bench-card">
+      <div class="bench-label">Training Lead CVR</div>
+      <div class="bench-value" style="color:var(--fog);">6%</div>
+      <div class="bench-unit">Click to WhatsApp inquiry</div>
+      <div class="bench-note">Enrolment close rate: 15–20%</div>
+    </div>
+    <div class="bench-card">
+      <div class="bench-label">Expected Services ROAS</div>
+      <div class="bench-value" style="color:var(--fog);">3x</div>
+      <div class="bench-unit">Revenue per A$1 spent</div>
+      <div class="bench-note">By month 3 with retargeting layer</div>
+    </div>
+    <div class="bench-card">
+      <div class="bench-label">Expected Training ROAS</div>
+      <div class="bench-value" style="color:var(--fog);">4x+</div>
+      <div class="bench-unit">Revenue per A$1 spent</div>
+      <div class="bench-note">High-value course, low repeat</div>
+    </div>
+  </div>
+
+  <small class="mt-16">Sources: Rockingweb.com.au Meta Ads Australia Benchmarks 2026 · Get-Ryze.ai Meta Ads Cost Benchmarks 2026 · Meta Business Insights March 2026. AU CPM floor set at A$3.50 by Meta global minimum program. Beauty CPA benchmarks converted at 0.63 USD/AUD.</small>
+</div>
+
+
+<!-- PROJECTIONS SECTION REMOVED -->
+<div class="section" style="display:none;">
+  <div class="section-label">removed</div>
+  <h2 class="section-title">removed</h2>
+
+  <p class="body-copy mb-32">
+    Conservative projections based on benchmarks above. These figures assume consistent creative output and weekly optimisation. Month 1 is deliberately conservative — accounts for the learning phase where Meta's algorithm needs data before it can optimise efficiently. Numbers are achievable; they are not the ceiling.
+  </p>
+
+  <div style="overflow-x:auto;">
+  <table class="proj-table">
+    <thead>
+      <tr>
+        <th>Metric</th>
+        <th class="col-ph1">Phase 1<br>Month 1</th>
+        <th class="col-ph2">Phase 2<br>Month 2</th>
+        <th class="col-ph3">Phase 3<br>Month 3</th>
+      </tr>
+    </thead>
+    <tbody>
+      <!-- SERVICES -->
+      <tr class="divider-row">
+        <td colspan="4">Services Campaign</td>
+      </tr>
+      <tr>
+        <td class="metric-label">Monthly Ad Budget</td>
+        <td>A$800</td>
+        <td>A$1,000</td>
+        <td>A$1,400</td>
+      </tr>
+      <tr>
+        <td class="metric-label">Est. Impressions</td>
+        <td>44,400</td>
+        <td>58,800</td>
+        <td>80,000</td>
+      </tr>
+      <tr>
+        <td class="metric-label">Avg CPM</td>
+        <td>A$18.00</td>
+        <td>A$17.00</td>
+        <td>A$17.50</td>
+      </tr>
+      <tr>
+        <td class="metric-label">CTR</td>
+        <td>1.8%</td>
+        <td>2.2%</td>
+        <td>2.4%</td>
+      </tr>
+      <tr>
+        <td class="metric-label">Est. Clicks</td>
+        <td>799</td>
+        <td>1,294</td>
+        <td>1,920</td>
+      </tr>
+      <tr>
+        <td class="metric-label">Booking Conversion Rate</td>
+        <td>2.5%</td>
+        <td>3.2%</td>
+        <td>3.8%</td>
+      </tr>
+      <tr>
+        <td class="metric-label">Est. New Bookings</td>
+        <td class="col-ph1">20</td>
+        <td class="col-ph2 highlight">41</td>
+        <td class="col-ph3 strong">73</td>
+      </tr>
+      <tr>
+        <td class="metric-label">Avg Booking Value</td>
+        <td>A$90</td>
+        <td>A$95</td>
+        <td>A$100</td>
+      </tr>
+      <tr>
+        <td class="metric-label">Est. Revenue (Services)</td>
+        <td class="col-ph1">A$1,800</td>
+        <td class="col-ph2 highlight">A$3,895</td>
+        <td class="col-ph3 strong">A$7,300</td>
+      </tr>
+      <tr>
+        <td class="metric-label">Services ROAS</td>
+        <td>2.3x</td>
+        <td class="highlight">3.9x</td>
+        <td class="good">5.2x</td>
+      </tr>
+
+      <!-- TRAINING -->
+      <tr class="divider-row">
+        <td colspan="4">Training Campaign</td>
+      </tr>
+      <tr>
+        <td class="metric-label">Monthly Ad Budget</td>
+        <td>A$400</td>
+        <td>A$500</td>
+        <td>A$600</td>
+      </tr>
+      <tr>
+        <td class="metric-label">Est. Impressions</td>
+        <td>26,700</td>
+        <td>33,300</td>
+        <td>40,000</td>
+      </tr>
+      <tr>
+        <td class="metric-label">CTR</td>
+        <td>1.5%</td>
+        <td>1.8%</td>
+        <td>2.0%</td>
+      </tr>
+      <tr>
+        <td class="metric-label">Est. Clicks / Reach</td>
+        <td>400</td>
+        <td>599</td>
+        <td>800</td>
+      </tr>
+      <tr>
+        <td class="metric-label">WhatsApp Inquiry Rate</td>
+        <td>6%</td>
+        <td>7%</td>
+        <td>8%</td>
+      </tr>
+      <tr>
+        <td class="metric-label">Est. Training Enquiries</td>
+        <td>24</td>
+        <td>42</td>
+        <td>64</td>
+      </tr>
+      <tr>
+        <td class="metric-label">Enrolment Close Rate</td>
+        <td>15%</td>
+        <td>18%</td>
+        <td>20%</td>
+      </tr>
+      <tr>
+        <td class="metric-label">Est. New Students</td>
+        <td class="col-ph1">4</td>
+        <td class="col-ph2 highlight">8</td>
+        <td class="col-ph3 strong">13</td>
+      </tr>
+      <tr>
+        <td class="metric-label">Avg Course Value</td>
+        <td>A$450</td>
+        <td>A$450</td>
+        <td>A$450</td>
+      </tr>
+      <tr>
+        <td class="metric-label">Est. Revenue (Training)</td>
+        <td class="col-ph1">A$1,800</td>
+        <td class="col-ph2 highlight">A$3,600</td>
+        <td class="col-ph3 strong">A$5,850</td>
+      </tr>
+      <tr>
+        <td class="metric-label">Training ROAS</td>
+        <td>4.5x</td>
+        <td class="highlight">7.2x</td>
+        <td class="good">9.75x</td>
+      </tr>
+
+      <!-- TOTALS -->
+      <tr class="divider-row">
+        <td colspan="4">Combined Summary</td>
+      </tr>
+      <tr style="background:rgba(200,169,124,0.05);">
+        <td class="metric-label">Total Monthly Spend</td>
+        <td><strong style="color:var(--white);">A$1,200</strong></td>
+        <td><strong style="color:var(--white);">A$1,500</strong></td>
+        <td><strong style="color:var(--white);">A$2,000</strong></td>
+      </tr>
+      <tr style="background:rgba(200,169,124,0.05);">
+        <td class="metric-label">Total Est. Revenue</td>
+        <td><strong style="color:var(--gold);">A$3,600</strong></td>
+        <td><strong style="color:var(--gold);">A$7,495</strong></td>
+        <td><strong style="color:var(--gold);">A$13,150</strong></td>
+      </tr>
+      <tr style="background:rgba(200,169,124,0.05);">
+        <td class="metric-label">Blended ROAS</td>
+        <td><strong style="color:var(--gold);">3.0x</strong></td>
+        <td><strong style="color:var(--gold);">5.0x</strong></td>
+        <td><strong style="color:var(--gold);">6.6x</strong></td>
+      </tr>
+      <tr style="background:rgba(200,169,124,0.05);">
+        <td class="metric-label">3-Month Combined Revenue</td>
+        <td colspan="3" style="text-align:center;"><strong style="color:var(--gold-light); font-size:16px; font-family:'DM Mono',monospace;">A$24,245 (est.)</strong></td>
+      </tr>
+    </tbody>
+  </table>
+  </div>
+  <small class="mt-12">Projections are conservative estimates based on industry benchmarks. Actual results will vary based on creative quality, audience size, seasonal factors, and booking system friction. Month 1 includes a 2-week learning phase. Repeat visits and lifetime value (LTV) not included — actual client value is likely higher. Training course value estimated at A$450 average (face-to-face and online blended).</small>
+</div>
+
+
+<!-- ═══════════════════════════ 07 — TRACKING SETUP ══════════════ -->
+<div class="section">
+  <div class="section-label">07 — Tracking & Measurement Setup</div>
+  <h2 class="section-title">Getting the<br><em>Foundation Right</em></h2>
+
+  <p class="body-copy mb-32">
+    Clean tracking is the most important first-week task and the foundation everything else is built on. Without a functioning pixel and conversion event, Meta cannot optimise for bookings — it will optimise for clicks to anyone, which wastes budget fast.
+  </p>
+
+  <div class="track-item">
+    <span class="track-num">01</span>
+    <div>
+      <div class="track-title">Install Meta Pixel on instudiolash.com</div>
+      <p class="track-desc">Pixel goes in the site header via WordPress/Elementor. Fires on every page visit. This is the base layer — required before anything else.</p>
+    </div>
+  </div>
+  <div class="track-item">
+    <span class="track-num">02</span>
+    <div>
+      <div class="track-title">Set Up a Custom "Book Now Click" Conversion Event</div>
+      <p class="track-desc">Since Gettimely is a third-party booking system (bookings.gettimely.com), we cannot fire a Purchase event on confirmation. Instead we fire a Lead event on the "Book Now" button click. This gives Meta a clear signal to optimise towards. Once Gettimely or a booking confirmation email can pass data back, we upgrade this to a full Purchase event.</p>
+    </div>
+  </div>
+  <div class="track-item">
+    <span class="track-num">03</span>
+    <div>
+      <div class="track-title">UTM Parameters on All Ad Links</div>
+      <p class="track-desc">Every ad URL must include UTM tags (utm_source=meta, utm_medium=paid, utm_campaign=services-phase1) so booking source can be tracked in Google Analytics (if active) and reported to Ingrid. Minimum: source, medium, campaign, content.</p>
+    </div>
+  </div>
+  <div class="track-item">
+    <span class="track-num">04</span>
+    <div>
+      <div class="track-title">Conversions API (CAPI) — Phase 2</div>
+      <p class="track-desc">As iOS privacy restrictions reduce browser pixel reliability, CAPI sends server-side events directly from the website to Meta. Increases event match quality and reduces data loss. Set up via Meta's native CAPI gateway or through a partner integration. Target: event match quality score of 7+ out of 10.</p>
+    </div>
+  </div>
+  <div class="track-item">
+    <span class="track-num">05</span>
+    <div>
+      <div class="track-title">Custom Audience Pixel Triggers</div>
+      <p class="track-desc">Set up a custom audience for "Website Visitors — Last 30 Days" and "Website Visitors — Last 7 Days" as soon as the pixel is live. These audiences are needed for retargeting in Phase 2 and need 30 days of data to be usable.</p>
+    </div>
+  </div>
+  <div class="track-item">
+    <span class="track-num">06</span>
+    <div>
+      <div class="track-title">Monthly Reporting — Bookings Attributed</div>
+      <p class="track-desc">We will track: ad spend, impressions, clicks, cost per click, booking events fired, estimated bookings, and revenue attributed. Delivered as a monthly summary alongside a simple ROAS calculation. Ingrid will need to manually cross-check Gettimely booking volume against pre-/post-launch baselines to validate incremental lift.</p>
+    </div>
+  </div>
+</div>
+
+
+<!-- NEXT STEPS SECTION REMOVED -->
+<div class="section" style="display:none;">
+  <div class="section-label">removed</div>
+  <h2 class="section-title">removed</h2>
+
+  <ul class="steps-list">
+    <li>
+      <div class="step-icon gold-ic">01</div>
+      <div class="step-body">
+        <div class="step-title">Proposal Acceptance + Account Access</div>
+        <p class="step-desc">Ingrid accepts the proposal and grants Shamsher partner access to her Facebook Business Manager (or we set one up together). We also need admin access to instudiolash.com to install the Meta Pixel. Timeline: Day 1.</p>
+      </div>
+    </li>
+    <li>
+      <div class="step-icon gold-ic">02</div>
+      <div class="step-body">
+        <div class="step-title">Business Manager + Ad Account Setup</div>
+        <p class="step-desc">Create Meta Business Manager, connect the Instagram page (@in.studioaustralia), set up ad account, add payment method, and verify the business. If Business Manager already exists, connect us as a partner. Timeline: Day 1–2.</p>
+      </div>
+    </li>
+    <li>
+      <div class="step-icon gold-ic">03</div>
+      <div class="step-body">
+        <div class="step-title">Pixel Installation + Conversion Event Setup</div>
+        <p class="step-desc">Install pixel, configure the "Book Now" custom event, verify in Meta Events Manager using the Pixel Helper browser extension. Start building the Website Custom Audience from day 1. Timeline: Day 2–3.</p>
+      </div>
+    </li>
+    <li>
+      <div class="step-icon blush-ic">04</div>
+      <div class="step-body">
+        <div class="step-title">Creative Asset Collection</div>
+        <p class="step-desc">We need Ingrid to share: 3–5 before/after treatment photos, 2–3 short clips (15–30 sec) from the studio or treatments, 1 photo of Ingrid at work, any existing client testimonials in writing. Raw iPhone footage works perfectly. Timeline: Day 3–5.</p>
+      </div>
+    </li>
+    <li>
+      <div class="step-icon blush-ic">05</div>
+      <div class="step-body">
+        <div class="step-title">Creative Production + Copy Review</div>
+        <p class="step-desc">Shamsher produces the ad creatives (Reels edit, carousel, static), ad copy, and hooks for Ingrid to review and approve. We make any requested changes before launch. Timeline: Day 5–7.</p>
+      </div>
+    </li>
+    <li>
+      <div class="step-icon slate-ic">06</div>
+      <div class="step-body">
+        <div class="step-title">Campaign Launch — Week 1</div>
+        <p class="step-desc">Both campaigns go live. We monitor delivery daily for the first 5 days, checking for any ad rejections, budget pacing issues, or audience size problems. No major changes in the first 7 days — allow the learning phase to complete.</p>
+      </div>
+    </li>
+    <li>
+      <div class="step-icon slate-ic">07</div>
+      <div class="step-body">
+        <div class="step-title">Week 2 Check-In Call + First Optimisation</div>
+        <p class="step-desc">Review initial performance data — CTR, CPC, impressions, any booking events. Identify any creative or audience adjustments needed. Brief Ingrid on early signals. Begin building out Phase 2 retargeting structure in the background.</p>
+      </div>
+    </li>
+  </ul>
+</div>
+
+
+<!-- ═══════════════════════════ FOOTER ══════════════════════════ -->
+<div class="doc-footer">
+  <div class="footer-brand">Shamsher</div>
+  <div class="footer-note">Prepared for In Studio, Mosman · July 2026 · Confidential</div>
+</div>
+
+</body>
+</html>
